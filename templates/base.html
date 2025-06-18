@@ -1,0 +1,268 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}مركز بانوراما للأشعة - قطور{% endblock %}</title>
+    
+    <!-- Bootstrap RTL CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- Andalusia Egypt Inspired CSS -->
+    <link rel="stylesheet" href="{% static 'css/andalusia.css' %}">
+    
+    <style>
+        body {
+            background-color: #f8f5f0;
+            color: #5a4637;
+            font-family: 'Cairo', 'Tajawal', Arial, sans-serif;
+            line-height: 1.6;
+        }
+        
+        .navbar, .footer {
+            background: #fff8f0 !important;
+            border-bottom: 1px solid #e5d3b3;
+        }
+        
+        .navbar-brand, .navbar-nav .nav-link, .footer {
+            color: #b08d57 !important;
+            font-weight: bold;
+        }
+        
+        .navbar-nav .nav-link.active, .navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover {
+            color: #007bff !important;
+        }
+        
+        .btn-primary, .btn-primary:active, .btn-primary:focus {
+            background: #009fe3 !important;
+            border-color: #009fe3 !important;
+            color: #fff !important;
+            font-weight: bold;
+        }
+        
+        .btn-outline-primary {
+            border-color: #009fe3 !important;
+            color: #009fe3 !important;
+        }
+        
+        .btn-outline-primary:hover {
+            background: #009fe3 !important;
+            color: #fff !important;
+        }
+        
+        .section-title, h1, h2, h3, h4, h5 {
+            color: #b08d57;
+            font-weight: bold;
+        }
+        
+        .card {
+            border-radius: 1rem;
+            border: 1px solid #e5d3b3;
+        }
+        
+        .card-header {
+            background: #fff8f0;
+            color: #b08d57;
+            border-bottom: 1px solid #e5d3b3;
+        }
+        
+        .footer {
+            background: #fff8f0;
+            color: #b08d57;
+            border-top: 1px solid #e5d3b3;
+        }
+        
+        .footer a {
+            color: #009fe3;
+        }
+        
+        .input, textarea, select {
+            border-radius: 0.5rem !important;
+            border: 1px solid #e5d3b3 !important;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+        }
+        
+        .service-card {
+            transition: transform 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .doctor-card {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Header -->
+    <header class="header navbar navbar-expand-lg py-3">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+            <a href="/" class="navbar-brand d-flex align-items-center">
+                {% if settings and settings.logo %}
+                    <img src="{{ settings.logo.url }}" alt="Logo" class="logo me-2">
+                {% else %}
+                    <img src="{% static 'images/equipment/logo.png' %}" alt="Logo" class="logo me-2">
+                {% endif %}
+                <span class="fw-bold" style="color:#00bfae; font-size:2rem;">{{ settings.site_name|default:'بانوراما' }}</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <nav class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+                    <li class="nav-item"><a href="/" class="nav-link">الرئيسية</a></li>
+                    <li class="nav-item"><a href="{% url 'main:about' %}" class="nav-link">من نحن</a></li>
+                    <li class="nav-item"><a href="{% url 'main:services' %}" class="nav-link">الخدمات</a></li>
+                    <li class="nav-item"><a href="{% url 'main:team' %}" class="nav-link">الأطباء</a></li>
+                    <li class="nav-item"><a href="{% url 'main:offers' %}" class="nav-link">العروض</a></li>
+                    <li class="nav-item"><a href="{% url 'main:blog' %}" class="nav-link">المدونة</a></li>
+                    <li class="nav-item"><a href="{% url 'main:contact' %}" class="nav-link">تواصل معنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- End Header -->
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <button class="close-btn"><i class="fas fa-times"></i></button>
+        <div class="text-center mb-4">
+            {% if settings and settings.logo %}
+                <img src="{{ settings.logo.url }}" alt="Logo" class="logo mb-2" style="height:40px;">
+            {% else %}
+                <img src="{% static 'images/equipment/logo.png' %}" alt="Logo" class="logo mb-2" style="height:40px;">
+            {% endif %}
+            <h5 class="fw-bold" style="color:#b08d57;">{{ settings.site_name|default:'مركز بانوراما للأشعة' }}</h5>
+        </div>
+        <a href="/" class="nav-link">الرئيسية</a>
+        <a href="{% url 'main:about' %}" class="nav-link">من نحن</a>
+        <a href="{% url 'main:services' %}" class="nav-link">الخدمات</a>
+        <a href="{% url 'main:team' %}" class="nav-link">الأطباء</a>
+        <a href="{% url 'main:offers' %}" class="nav-link">العروض</a>
+        <a href="{% url 'main:blog' %}" class="nav-link">المدونة</a>
+        <a href="{% url 'main:contact' %}" class="nav-link">تواصل معنا</a>
+        <div class="lang-switch mt-4">
+            <a href="#" class="nav-link">العربية</a> |
+            <a href="#" class="nav-link">English</a>
+        </div>
+        <div class="mt-4 text-center">
+            <span class="d-block mb-1"><i class="fas fa-phone-alt me-2"></i> 16781 <span class="mx-2">|</span> <i class="fas fa-phone me-2"></i> 040-1234567</span>
+            <div class="d-flex justify-content-center gap-2 mt-2">
+                {% if settings and settings.facebook %}
+                    <a href="{{ settings.facebook }}" class="icon-circle" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                {% endif %}
+                {% if settings and settings.instagram %}
+                    <a href="{{ settings.instagram }}" class="icon-circle" target="_blank"><i class="fab fa-instagram"></i></a>
+                {% endif %}
+                {% if settings and settings.whatsapp %}
+                    <a href="{{ settings.whatsapp }}" class="icon-circle" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav d-lg-none">
+        <a href="/" class="nav-link"><span class="icon"><i class="fas fa-home"></i></span>الرئيسية</a>
+        <a href="{% url 'main:blog' %}" class="nav-link"><span class="icon"><i class="fas fa-blog"></i></span>المدونة</a>
+        <a href="{% url 'main:booking' %}" class="nav-link"><span class="icon"><i class="fas fa-calendar-plus"></i></span>حجز موعد</a>
+        <a href="{% url 'main:about' %}" class="nav-link"><span class="icon"><i class="fas fa-info-circle"></i></span>من نحن</a>
+        <a href="{% url 'main:offers' %}" class="nav-link"><span class="icon"><i class="fas fa-gift"></i></span>العروض</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    {% if settings and settings.logo %}
+                        <img src="{{ settings.logo.url }}" alt="Logo" class="logo mb-3" style="height:60px;">
+                    {% else %}
+                        <img src="{% static 'images/equipment/logo.png' %}" alt="Logo" class="logo mb-3" style="height:60px;">
+                    {% endif %}
+                    <h5 class="mb-3 text-main">{{ settings.site_name|default:'مركز بانوراما للأشعة' }}</h5>
+                    <p class="mb-3">مركز متخصص في جميع أنواع الأشعة التشخيصية والتحاليل الطبية بأحدث الأجهزة وأفضل الكوادر الطبية.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="mb-3 text-main">روابط سريعة</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'main:services' %}" class="">الخدمات</a></li>
+                        <li><a href="{% url 'main:team' %}" class="">الفريق الطبي</a></li>
+                        <li><a href="{% url 'main:booking' %}" class="">حجز موعد</a></li>
+                        <li><a href="{% url 'main:contact' %}" class="">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <h5 class="mb-3 text-main">معلومات التواصل</h5>
+                    <div class="contact-info">
+                        <p class="mb-2">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            خلف البنك الأهلي – شارع التأمينات – قطور
+                        </p>
+                        <span class="d-block mb-1"><i class="fas fa-phone-alt me-2"></i> 16781 <span class="mx-2">|</span> <i class="fas fa-phone me-2"></i> 040-1234567</span>
+                        <div class="d-flex gap-2 mt-3">
+                            {% if settings and settings.facebook %}
+                                <a href="{{ settings.facebook }}" class="icon-circle" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            {% endif %}
+                            {% if settings and settings.instagram %}
+                                <a href="{{ settings.instagram }}" class="icon-circle" target="_blank"><i class="fab fa-instagram"></i></a>
+                            {% endif %}
+                            {% if settings and settings.whatsapp %}
+                                <a href="{{ settings.whatsapp }}" class="icon-circle" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 مركز بانوراما للأشعة. جميع الحقوق محفوظة.</p>
+                <p class="mb-0 mt-2">
+                    <a href="https://t.me/D_F_L" target="_blank" class="text-main text-decoration-none fw-bold">
+                        <i class="fab fa-telegram me-1"></i>
+                        تم برمجه بواسطه تيم HXO
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html> 

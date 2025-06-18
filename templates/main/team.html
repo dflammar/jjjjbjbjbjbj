@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}الفريق الطبي - مركز بانوراما للأشعة{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="display-4 fw-bold mb-3">الفريق الطبي</h1>
+                <p class="lead">تعرف على الكادر الطبي المتميز في مركز بانوراما للأشعة</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-5">
+    <div class="container">
+        {% if doctors %}
+        <div class="row g-4">
+            {% for doctor in doctors %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card doctor-card h-100 border-0 shadow">
+                    {% if doctor.image %}
+                    <img src="{{ doctor.image.url }}" class="card-img-top" alt="{{ doctor.name }}" style="height: 350px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 350px;">
+                        <i class="fas fa-user-md text-muted" style="font-size: 4rem;"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body text-center">
+                        <h4 class="card-title fw-bold mb-2">{{ doctor.name }}</h4>
+                        <p class="text-primary fw-bold mb-2">{{ doctor.specialization }}</p>
+                        <p class="text-muted mb-2">
+                            <i class="fas fa-graduation-cap me-1"></i>
+                            {{ doctor.qualification }}
+                        </p>
+                        <p class="text-muted mb-3">
+                            <i class="fas fa-clock me-1"></i>
+                            خبرة: {{ doctor.experience }}
+                        </p>
+                        {% if doctor.bio %}
+                        <p class="card-text text-muted">{{ doctor.bio|truncatewords:25 }}</p>
+                        {% endif %}
+                        <a href="{% url 'main:doctor_detail' doctor.id %}" class="btn btn-primary">
+                            <i class="fas fa-user me-2"></i>
+                            عرض الملف الشخصي
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="py-5">
+                    <i class="fas fa-users text-muted mb-3" style="font-size: 4rem;"></i>
+                    <h3 class="text-muted">لا يوجد أطباء متاحون حالياً</h3>
+                    <p class="text-muted">سيتم إضافة معلومات الفريق الطبي قريباً</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Specializations Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-4">
+            <div class="col-12">
+                <h2 class="fw-bold">التخصصات الطبية</h2>
+                <p class="lead text-muted">نغطي جميع التخصصات في مجال الأشعة التشخيصية</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-brain text-primary mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">أشعة المخ والجهاز العصبي</h5>
+                        <p class="card-text text-muted">تخصص في تشخيص أمراض المخ والجهاز العصبي</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-heart text-primary mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">أشعة القلب والصدر</h5>
+                        <p class="card-text text-muted">تشخيص أمراض القلب والرئتين والصدر</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-bone text-primary mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">أشعة العظام والمفاصل</h5>
+                        <p class="card-text text-muted">تشخيص إصابات وأمراض العظام والمفاصل</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-baby text-primary mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">أشعة النساء والتوليد</h5>
+                        <p class="card-text text-muted">متابعة الحمل وتشخيص أمراض النساء</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-4">
+            <div class="col-12">
+                <h2 class="fw-bold">لماذا تختار فريقنا الطبي؟</h2>
+                <p class="lead text-muted">نتميز بالخبرة والكفاءة في مجال الأشعة التشخيصية</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="text-center">
+                    <i class="fas fa-certificate text-primary mb-3" style="font-size: 3rem;"></i>
+                    <h5 class="fw-bold">شهادات معتمدة</h5>
+                    <p class="text-muted">جميع أطباؤنا حاصلون على شهادات معتمدة من كبرى الجامعات المصرية والعالمية</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="text-center">
+                    <i class="fas fa-clock text-primary mb-3" style="font-size: 3rem;"></i>
+                    <h5 class="fw-bold">خبرة طويلة</h5>
+                    <p class="text-muted">خبرة تزيد عن 10 سنوات في مجال الأشعة التشخيصية</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="text-center">
+                    <i class="fas fa-handshake text-primary mb-3" style="font-size: 3rem;"></i>
+                    <h5 class="fw-bold">رعاية شخصية</h5>
+                    <p class="text-muted">نقدم رعاية شخصية لكل مريض مع الاهتمام بجميع التفاصيل</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3">احجز موعد مع طبيب متخصص</h2>
+        <p class="lead mb-4">احصل على أفضل رعاية طبية من فريقنا المتميز</p>
+        <div class="d-flex gap-3 justify-content-center">
+            <a href="{% url 'main:booking' %}" class="btn btn-light btn-lg">
+                <i class="fas fa-calendar-plus me-2"></i>
+                احجز موعد
+            </a>
+            <a href="{% url 'main:contact' %}" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-phone me-2"></i>
+                تواصل معنا
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %} 

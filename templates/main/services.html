@@ -1,0 +1,466 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}الخدمات - مركز بانوراما للأشعة{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-main text-white text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-3">خدماتنا</h1>
+        <p class="lead">نقدم مجموعة شاملة من خدمات الأشعة التشخيصية والتحاليل الطبية بأحدث التقنيات</p>
+    </div>
+</section>
+
+<!-- Service Categories Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="fw-bold text-main">أقسام الخدمات</h2>
+                <p class="lead text-muted">اختر القسم المناسب لاحتياجاتك</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <!-- الأشعة العادية -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card service-category-card h-100 border-0 shadow-lg">
+                    <div class="card-img-top position-relative bg-main d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <div class="text-center text-white">
+                            <i class="fas fa-bone mb-3" style="font-size: 3rem;"></i>
+                            <h4 class="fw-bold">الأشعة العادية</h4>
+                        </div>
+                    </div>
+                    <div class="card-body text-center p-4">
+                        <p class="card-text text-muted mb-4">أشعة سينية تقليدية على مختلف أجزاء الجسم للتشخيص الأساسي</p>
+                        <div class="d-grid gap-2">
+                            <a href="#xray-regular" class="btn btn-main" data-bs-toggle="collapse">
+                                <i class="fas fa-list ms-2"></i>
+                                عرض الخدمات
+                            </a>
+                            <a href="{% url 'main:booking' %}" class="btn btn-outline-primary">
+                                <i class="fas fa-calendar-plus ms-2"></i>
+                                حجز مباشر
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- الأشعة المقطعية -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card service-category-card h-100 border-0 shadow-lg">
+                    <div class="card-img-top position-relative bg-main d-flex align-items-center justify-content-center" style="height: 200px; background: linear-gradient(135deg, #00bfae 0%, #4facfe 100%);">
+                        <div class="text-center text-white">
+                            <i class="fas fa-brain mb-3" style="font-size: 3rem;"></i>
+                            <h4 class="fw-bold">الأشعة المقطعية</h4>
+                        </div>
+                    </div>
+                    <div class="card-body text-center p-4">
+                        <p class="card-text text-muted mb-4">أشعة مقطعية محوسبة (CT Scan) للحصول على صور ثلاثية الأبعاد</p>
+                        <div class="d-grid gap-2">
+                            <a href="#xray-ct" class="btn btn-main" data-bs-toggle="collapse">
+                                <i class="fas fa-list ms-2"></i>
+                                عرض الخدمات
+                            </a>
+                            <a href="{% url 'main:booking' %}" class="btn btn-outline-primary">
+                                <i class="fas fa-calendar-plus ms-2"></i>
+                                حجز مباشر
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- الرنين المغناطيسي -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card service-category-card h-100 border-0 shadow-lg">
+                    <div class="card-img-top position-relative bg-main d-flex align-items-center justify-content-center" style="height: 200px; background: linear-gradient(135deg, #00bfae 0%, #00f2fe 100%);">
+                        <div class="text-center text-white">
+                            <i class="fas fa-magnet mb-3" style="font-size: 3rem;"></i>
+                            <h4 class="fw-bold">الرنين المغناطيسي</h4>
+                        </div>
+                    </div>
+                    <div class="card-body text-center p-4">
+                        <p class="card-text text-muted mb-4">أشعة رنين مغناطيسي (MRI) للأنسجة الرخوة والتفاصيل الدقيقة</p>
+                        <div class="d-grid gap-2">
+                            <a href="#xray-mri" class="btn btn-main" data-bs-toggle="collapse">
+                                <i class="fas fa-list ms-2"></i>
+                                عرض الخدمات
+                            </a>
+                            <a href="{% url 'main:booking' %}" class="btn btn-outline-primary">
+                                <i class="fas fa-calendar-plus ms-2"></i>
+                                حجز مباشر
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- أشعة الأسنان -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card service-category-card h-100 border-0 shadow-lg">
+                    <div class="card-img-top position-relative bg-main d-flex align-items-center justify-content-center" style="height: 200px; background: linear-gradient(135deg, #00bfae 0%, #fed6e3 100%);">
+                        <div class="text-center text-white">
+                            <i class="fas fa-tooth mb-3" style="font-size: 3rem;"></i>
+                            <h4 class="fw-bold">أشعة الأسنان</h4>
+                        </div>
+                    </div>
+                    <div class="card-body text-center p-4">
+                        <p class="card-text text-muted mb-4">أشعة متخصصة للأسنان والفكين بأحدث التقنيات الرقمية</p>
+                        <div class="d-grid gap-2">
+                            <a href="#xray-dental" class="btn btn-main" data-bs-toggle="collapse">
+                                <i class="fas fa-list ms-2"></i>
+                                عرض الخدمات
+                            </a>
+                            <a href="{% url 'main:booking' %}" class="btn btn-outline-primary">
+                                <i class="fas fa-calendar-plus ms-2"></i>
+                                حجز مباشر
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- الأشعة التليفزيونية والإيكو -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card service-category-card h-100 border-0 shadow-lg">
+                    <div class="card-img-top position-relative bg-main d-flex align-items-center justify-content-center" style="height: 200px; background: linear-gradient(135deg, #00bfae 0%, #fcb69f 100%);">
+                        <div class="text-center text-white">
+                            <i class="fas fa-heartbeat mb-3" style="font-size: 3rem;"></i>
+                            <h4 class="fw-bold">الأشعة التليفزيونية والإيكو</h4>
+                        </div>
+                    </div>
+                    <div class="card-body text-center p-4">
+                        <p class="card-text text-muted mb-4">أشعة بالموجات فوق الصوتية ورسم القلب للتشخيص الدقيق</p>
+                        <div class="d-grid gap-2">
+                            <a href="#xray-ultrasound" class="btn btn-main" data-bs-toggle="collapse">
+                                <i class="fas fa-list ms-2"></i>
+                                عرض الخدمات
+                            </a>
+                            <a href="{% url 'main:booking' %}" class="btn btn-outline-primary">
+                                <i class="fas fa-calendar-plus ms-2"></i>
+                                حجز مباشر
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Details Sections -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <!-- الأشعة العادية -->
+        <div class="collapse" id="xray-regular">
+            <div class="card border-0 shadow mb-4">
+                <div class="card-header bg-main text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-bone ms-2"></i>
+                        الأشعة العادية
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        {% for service in services %}
+                            {% if service.category.name == "الأشعة العادية" %}
+                            <div class="col-lg-6 col-md-12">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    {% if service.image %}
+                                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.name }}" style="height: 200px; object-fit: cover;">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title">{{ service.name }}</h5>
+                                            <span class="badge bg-main">{{ service.price }} جنيه</span>
+                                        </div>
+                                        <p class="card-text text-muted">{{ service.description }}</p>
+                                        <a href="{% url 'main:booking' %}" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-calendar-plus ms-1"></i>
+                                            حجز مباشر
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- الأشعة المقطعية -->
+        <div class="collapse" id="xray-ct">
+            <div class="card border-0 shadow mb-4">
+                <div class="card-header bg-main text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-brain ms-2"></i>
+                        الأشعة المقطعية
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        {% for service in services %}
+                            {% if service.category.name == "الأشعة المقطعية" %}
+                            <div class="col-lg-6 col-md-12">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    {% if service.image %}
+                                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.name }}" style="height: 200px; object-fit: cover;">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title">{{ service.name }}</h5>
+                                            <span class="badge bg-main">{{ service.price }} جنيه</span>
+                                        </div>
+                                        <p class="card-text text-muted">{{ service.description }}</p>
+                                        <a href="{% url 'main:booking' %}" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-calendar-plus ms-1"></i>
+                                            حجز مباشر
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- الرنين المغناطيسي -->
+        <div class="collapse" id="xray-mri">
+            <div class="card border-0 shadow mb-4">
+                <div class="card-header bg-main text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-magnet ms-2"></i>
+                        الرنين المغناطيسي
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        {% for service in services %}
+                            {% if service.category.name == "الرنين المغناطيسي" %}
+                            <div class="col-lg-6 col-md-12">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    {% if service.image %}
+                                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.name }}" style="height: 200px; object-fit: cover;">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title">{{ service.name }}</h5>
+                                            <span class="badge bg-main">{{ service.price }} جنيه</span>
+                                        </div>
+                                        <p class="card-text text-muted">{{ service.description }}</p>
+                                        <a href="{% url 'main:booking' %}" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-calendar-plus ms-1"></i>
+                                            حجز مباشر
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- أشعة الأسنان -->
+        <div class="collapse" id="xray-dental">
+            <div class="card border-0 shadow mb-4">
+                <div class="card-header bg-main text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-tooth ms-2"></i>
+                        أشعة الأسنان
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        {% for service in services %}
+                            {% if service.category.name == "أشعة الأسنان" %}
+                            <div class="col-lg-6 col-md-12">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    {% if service.image %}
+                                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.name }}" style="height: 200px; object-fit: cover;">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title">{{ service.name }}</h5>
+                                            <span class="badge bg-main">{{ service.price }} جنيه</span>
+                                        </div>
+                                        <p class="card-text text-muted">{{ service.description }}</p>
+                                        <a href="{% url 'main:booking' %}" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-calendar-plus ms-1"></i>
+                                            حجز مباشر
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- الأشعة التليفزيونية والإيكو -->
+        <div class="collapse" id="xray-ultrasound">
+            <div class="card border-0 shadow mb-4">
+                <div class="card-header bg-main text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-heartbeat ms-2"></i>
+                        الأشعة التليفزيونية والإيكو
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        {% for service in services %}
+                            {% if service.category.name == "الأشعة التليفزيونية والإيكو" %}
+                            <div class="col-lg-6 col-md-12">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    {% if service.image %}
+                                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.name }}" style="height: 200px; object-fit: cover;">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title">{{ service.name }}</h5>
+                                            <span class="badge bg-main">{{ service.price }} جنيه</span>
+                                        </div>
+                                        <p class="card-text text-muted">{{ service.description }}</p>
+                                        <a href="{% url 'main:booking' %}" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-calendar-plus ms-1"></i>
+                                            حجز مباشر
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Medical Equipment Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="fw-bold">أحدث أجهزة الأشعة</h2>
+                <p class="lead text-muted">نستخدم أحدث التقنيات في مجال الأشعة التشخيصية</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 border-0 shadow text-center">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="جهاز الرنين المغناطيسي" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">جهاز الرنين المغناطيسي</h5>
+                        <p class="card-text text-muted">أحدث جهاز رنين مغناطيسي 1.5 تسلا للحصول على صور عالية الدقة</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 border-0 shadow text-center">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="جهاز الأشعة المقطعية" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">جهاز الأشعة المقطعية</h5>
+                        <p class="card-text text-muted">جهاز CT Scan متطور للحصول على صور ثلاثية الأبعاد</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 border-0 shadow text-center">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="جهاز بانوراما الأسنان" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">جهاز بانوراما الأسنان</h5>
+                        <p class="card-text text-muted">جهاز بانوراما UHD عالي الدقة لأشعة الأسنان</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 border-0 shadow text-center">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="جهاز الإيكو" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">جهاز الإيكو</h5>
+                        <p class="card-text text-muted">جهاز إيكو متطور لفحص القلب والأوعية الدموية</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 border-0 shadow text-center">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="جهاز الأشعة العادية" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">جهاز الأشعة العادية</h5>
+                        <p class="card-text text-muted">جهاز أشعة سينية رقمية عالي الدقة</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 border-0 shadow text-center">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="جهاز الموجات فوق الصوتية" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">جهاز الموجات فوق الصوتية</h5>
+                        <p class="card-text text-muted">جهاز سونار متطور لفحص الأنسجة الرخوة</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 border-0 shadow text-center">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="جهاز قياس كثافة العظام" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">جهاز قياس كثافة العظام</h5>
+                        <p class="card-text text-muted">جهاز DEXA لقياس كثافة العظام وتشخيص هشاشة العظام</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 border-0 shadow text-center">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="card-img-top" alt="جهاز الماموجرام" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">جهاز الماموجرام</h5>
+                        <p class="card-text text-muted">جهاز ماموجرام رقمية للكشف المبكر عن سرطان الثدي</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3">هل تحتاج مساعدة في اختيار الخدمة المناسبة؟</h2>
+        <p class="lead mb-4">تواصل معنا وسنرشدك للخدمة المناسبة لحالتك</p>
+        <div class="d-flex gap-3 justify-content-center">
+            <a href="{% url 'main:contact' %}" class="btn btn-light btn-lg">
+                <i class="fas fa-phone me-2"></i>
+                تواصل معنا
+            </a>
+            <a href="{% url 'main:booking' %}" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-calendar-plus me-2"></i>
+                احجز موعد
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+.service-category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+}
+
+.collapse {
+    transition: all 0.3s ease;
+}
+</style>
+{% endblock %} 

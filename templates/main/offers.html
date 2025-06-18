@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}العروض - مركز بانوراما للأشعة{% endblock %}
+{% block content %}
+<section class="py-5 bg-main text-white text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-3">العروض الخاصة</h1>
+        <p class="lead">استفد من أحدث العروض والخصومات في مركز بانوراما للأشعة</p>
+    </div>
+</section>
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            {% for offer in offers %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    {% if offer.image %}
+                    <img src="{{ offer.image.url }}" class="card-img-top" alt="{{ offer.title }}" style="height: 220px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title text-main">{{ offer.title }}</h5>
+                        <p class="card-text text-muted">{{ offer.description }}</p>
+                        <div class="mb-2">
+                            <span class="badge bg-main">من {{ offer.start_date }} إلى {{ offer.end_date }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="lead">لا توجد عروض متاحة حالياً.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %} 

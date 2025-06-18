@@ -1,0 +1,177 @@
+/* Andalusia Egypt Inspired CSS */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+body {
+    background-color: #F5F5F5;
+    color: #222;
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header/Navbar */
+.header, .navbar {
+    background: #E0E0E0 !important;
+    border-bottom: 1px solid #BDBDBD;
+    box-shadow: 0 2px 8px rgba(0, 191, 174, 0.07);
+    padding: 0.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.header .logo, .navbar .logo {
+    height: 50px;
+}
+.header .navbar-brand, .navbar .navbar-brand {
+    color: #D32F2F !important;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+
+.navbar-nav .nav-link, .header .nav-link {
+    color: #D32F2F !important;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 0 0.5rem;
+    transition: color 0.2s;
+}
+.navbar-nav .nav-link.active, .navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover {
+    color: #B71C1C !important;
+}
+
+/* Main Banner */
+.hero-section {
+    background: linear-gradient(135deg, #F5F5F5 0%, #E0E0E0 100%);
+    color: #D32F2F;
+    padding: 100px 0;
+    text-align: center;
+}
+.hero-section h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+.hero-section p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+/* Buttons */
+.btn-primary, .btn-main, .btn-primary:active, .btn-primary:focus {
+    background: #D32F2F !important;
+    border-color: #D32F2F !important;
+    color: #fff !important;
+    font-weight: bold;
+    border-radius: 2rem;
+    padding: 0.6rem 2rem;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+}
+.btn-outline-primary, .btn-outline-main {
+    border-color: #D32F2F !important;
+    color: #D32F2F !important;
+}
+.btn-outline-primary:hover, .btn-outline-main:hover {
+    background: #D32F2F !important;
+    color: #fff !important;
+}
+
+/* Section Titles */
+.section-title, h1, h2, h3, h4, h5 {
+    color: #D32F2F;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+/* Cards */
+.card {
+    border-radius: 1rem;
+    border: 1px solid #E0E0E0;
+    box-shadow: 0 2px 12px rgba(0, 191, 174, 0.07);
+    background: #fff;
+    margin-bottom: 2rem;
+}
+.card-header {
+    background: #F5F5F5;
+    color: #D32F2F;
+    border-bottom: 1px solid #E0E0E0;
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    background: #E0E0E0;
+    color: #D32F2F;
+    border-top: 1px solid #BDBDBD;
+    padding: 2rem 0 1rem 0;
+}
+.footer a {
+    color: #D32F2F;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .header .desktop-nav, .navbar .desktop-nav { display: none; }
+    .sidebar { width: 90vw; }
+}
+@media (min-width: 992px) {
+    .sidebar, .bottom-nav { display: none !important; }
+}
+
+/* Utility */
+.text-main {
+    color: #00bfae !important;
+}
+.bg-main {
+    background: #00bfae !important;
+    color: #fff !important;
+}
+
+.input, textarea, select {
+    border-radius: 0.5rem !important;
+    border: 1px solid #E0E0E0 !important;
+}
+
+.service-card {
+    transition: transform 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.doctor-card {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.doctor-card:hover {
+    transform: translateY(-5px);
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: #D32F2F;
+    border-radius: 50%;
+}
+
+a {
+    color: #D32F2F;
+}
+a:hover {
+    color: #B71C1C;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #D32F2F;
+}
+::-webkit-scrollbar-track {
+    background: #F5F5F5;
+} 

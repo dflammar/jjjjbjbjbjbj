@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}حجز موعد - مركز بانوراما للأشعة{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="display-4 fw-bold mb-3">حجز موعد</h1>
+                <p class="lead">احجز موعدك الآن واحصل على أفضل رعاية طبية</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Form Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow">
+                    <div class="card-header bg-light">
+                        <h3 class="mb-0">
+                            <i class="fas fa-calendar-plus me-2 text-primary"></i>
+                            نموذج حجز الموعد
+                        </h3>
+                    </div>
+                    <div class="card-body p-4">
+                        {% if messages %}
+                        <div class="mb-4">
+                            {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.name|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.phone|as_crispy_field }}
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.service|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.doctor|as_crispy_field }}
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.appointment_date|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.appointment_time|as_crispy_field }}
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                {{ form.notes|as_crispy_field }}
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>
+                                    إرسال طلب الحجز
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Info Section -->
+{% if services %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-4">
+            <div class="col-12">
+                <h2 class="fw-bold">خدماتنا المتاحة</h2>
+                <p class="lead text-muted">اختر من بين مجموعة واسعة من خدمات الأشعة</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-x-ray text-primary mb-3" style="font-size: 2.5rem;"></i>
+                        <h5 class="card-title">{{ service.name }}</h5>
+                        <p class="card-text text-muted">{{ service.description|truncatewords:15 }}</p>
+                        {% if service.price %}
+                        <p class="text-primary fw-bold">{{ service.price }} جنيه</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{% url 'main:services' %}" class="btn btn-outline-primary">
+                <i class="fas fa-list me-2"></i>
+                عرض جميع الخدمات
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Contact Info Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="fw-bold mb-4">معلومات التواصل</h3>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-map-marker-alt text-primary me-3" style="font-size: 1.5rem;"></i>
+                            <div>
+                                <h6 class="mb-1">العنوان</h6>
+                                <p class="text-muted mb-0">خلف البنك الأهلي – شارع التأمينات – قطور</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-phone text-primary me-3" style="font-size: 1.5rem;"></i>
+                            <div>
+                                <h6 class="mb-1">الهاتف الأرضي</h6>
+                                <p class="text-muted mb-0">0402754810</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-mobile-alt text-primary me-3" style="font-size: 1.5rem;"></i>
+                            <div>
+                                <h6 class="mb-1">الموبايل</h6>
+                                <p class="text-muted mb-0">01005874455</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <h3 class="fw-bold mb-4">ساعات العمل</h3>
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="d-flex justify-content-between">
+                                    <span>الأحد - الخميس</span>
+                                    <span class="fw-bold">8:00 ص - 10:00 م</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex justify-content-between">
+                                    <span>الجمعة</span>
+                                    <span class="fw-bold">9:00 ص - 6:00 م</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex justify-content-between">
+                                    <span>السبت</span>
+                                    <span class="fw-bold">9:00 ص - 8:00 م</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <p class="text-muted mb-0">
+                            <i class="fas fa-info-circle me-2"></i>
+                            نقدم خدمة الطوارئ على مدار الساعة
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// التحقق من صحة التاريخ (لا يمكن اختيار تاريخ في الماضي)
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.querySelector('input[name="appointment_date"]');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+    
+    // التحقق من صحة النموذج
+    const form = document.querySelector('.needs-validation');
+    form.addEventListener('submit', function(event) {
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+    });
+});
+</script>
+{% endblock %} 

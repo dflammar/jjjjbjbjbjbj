@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ doctor.name }} - مركز بانوراما للأشعة{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="display-5 fw-bold mb-3">د. {{ doctor.name }}</h1>
+                <p class="lead">{{ doctor.specialization }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Doctor Details Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 shadow">
+                    {% if doctor.image %}
+                    <img src="{{ doctor.image.url }}" class="card-img-top" alt="{{ doctor.name }}" style="height: 400px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 400px;">
+                        <i class="fas fa-user-md text-muted" style="font-size: 4rem;"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body text-center">
+                        <h4 class="fw-bold">{{ doctor.name }}</h4>
+                        <p class="text-primary fw-bold">{{ doctor.specialization }}</p>
+                        
+                        <div class="d-grid gap-2 mt-3">
+                            <a href="{% url 'main:booking' %}" class="btn btn-primary">
+                                <i class="fas fa-calendar-plus me-2"></i>
+                                احجز موعد
+                            </a>
+                            <a href="{% url 'main:contact' %}" class="btn btn-outline-primary">
+                                <i class="fas fa-phone me-2"></i>
+                                تواصل مع الطبيب
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-8">
+                <div class="card border-0 shadow">
+                    <div class="card-body p-4">
+                        <h3 class="fw-bold mb-4">الملف الشخصي</h3>
+                        
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-start">
+                                    <i class="fas fa-graduation-cap text-primary me-3 mt-1"></i>
+                                    <div>
+                                        <h6 class="fw-bold">المؤهل العلمي</h6>
+                                        <p class="text-muted">{{ doctor.qualification }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-start">
+                                    <i class="fas fa-clock text-primary me-3 mt-1"></i>
+                                    <div>
+                                        <h6 class="fw-bold">سنوات الخبرة</h6>
+                                        <p class="text-muted">{{ doctor.experience }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-start">
+                                    <i class="fas fa-stethoscope text-primary me-3 mt-1"></i>
+                                    <div>
+                                        <h6 class="fw-bold">التخصص</h6>
+                                        <p class="text-muted">{{ doctor.specialization }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-start">
+                                    <i class="fas fa-certificate text-primary me-3 mt-1"></i>
+                                    <div>
+                                        <h6 class="fw-bold">الحالة</h6>
+                                        <p class="text-muted">
+                                            {% if doctor.is_active %}
+                                            <span class="badge bg-success">متاح</span>
+                                            {% else %}
+                                            <span class="badge bg-secondary">غير متاح</span>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {% if doctor.bio %}
+                        <hr class="my-4">
+                        <h5 class="fw-bold mb-3">السيرة الذاتية</h5>
+                        <div class="doctor-bio">
+                            {{ doctor.bio|linebreaks }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3">احجز موعد مع د. {{ doctor.name }}</h2>
+        <p class="lead mb-4">احصل على أفضل رعاية طبية من طبيب متخصص</p>
+        <div class="d-flex gap-3 justify-content-center">
+            <a href="{% url 'main:booking' %}" class="btn btn-light btn-lg">
+                <i class="fas fa-calendar-plus me-2"></i>
+                احجز موعد
+            </a>
+            <a href="{% url 'main:contact' %}" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-phone me-2"></i>
+                تواصل معنا
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %} 

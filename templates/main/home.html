@@ -1,0 +1,305 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}مركز بانوراما للأشعة - قطور{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section d-flex align-items-center" style="min-height: 60vh; background: linear-gradient(135deg, #D32F2F 0%, #F5F5F5 100%);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 text-center text-lg-end">
+                <h1 class="display-3 fw-bold mb-3 text-main">مركز بانوراما للأشعة</h1>
+                <p class="lead mb-4">مركز متخصص في جميع أنواع الأشعة التشخيصية والتحاليل الطبية بأحدث الأجهزة وأفضل الكوادر الطبية في قطور</p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-end">
+                    <a href="{% url 'main:booking' %}" class="btn btn-main btn-lg px-4">
+                        <i class="fas fa-calendar-plus ms-2"></i>
+                        احجز موعد
+                    </a>
+                    <a href="{% url 'main:services' %}" class="btn btn-outline-main btn-lg px-4">
+                        <i class="fas fa-list ms-2"></i>
+                        خدماتنا
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5 text-center mt-4 mt-lg-0">
+                {% if settings and settings.logo %}
+                    <img src="{{ settings.logo.url }}" alt="Panorama Logo" class="img-fluid" style="max-height: 220px;">
+                {% elif equipment_images %}
+                    <div id="heroEquipmentCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for img in equipment_images %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <img src="{{ img.image.url }}" class="d-block w-100 rounded shadow" alt="جهاز طبي" style="max-height:220px;object-fit:contain;background:#f7f7f7;">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#heroEquipmentCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">السابق</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#heroEquipmentCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">التالي</span>
+                        </button>
+                    </div>
+                {% else %}
+                    <img src="{% static 'images/equipment/logo.png' %}" alt="Panorama Logo" class="img-fluid" style="max-height: 220px;">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Equipment Gallery Slider -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-4">
+            <div class="col-12">
+                <h2 class="fw-bold text-main mb-3">معرض أجهزة المركز</h2>
+                <p class="lead text-muted">تعرف على أحدث أجهزة الأشعة والتحاليل لدينا</p>
+            </div>
+        </div>
+        <div id="equipmentCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for img in equipment_images %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img src="{{ img.url }}" class="d-block w-100 rounded shadow" alt="جهاز طبي" style="max-height:400px;object-fit:contain;background:#f7f7f7;">
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#equipmentCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">السابق</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#equipmentCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">التالي</span>
+            </button>
+        </div>
+    </div>
+</section>
+<!-- End Equipment Gallery Slider -->
+
+<!-- Features Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="fw-bold mb-3 text-main">لماذا تختار مركز بانوراما؟</h2>
+                <p class="lead text-muted">نقدم أفضل الخدمات بأحدث التقنيات وأعلى معايير الجودة</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-microscope text-main mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">أحدث الأجهزة</h5>
+                        <p class="card-text">نستخدم أحدث أجهزة الأشعة والتحاليل للحصول على أدق النتائج</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-user-md text-main mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">كادر طبي متميز</h5>
+                        <p class="card-text">فريق من الأطباء المتخصصين ذوي الخبرة العالية في مجال الأشعة والتحاليل</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mx-auto">
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-clock text-main mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">سرعة في النتائج</h5>
+                        <p class="card-text">نضمن لك الحصول على النتائج في أسرع وقت ممكن مع الحفاظ على الدقة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Equipment Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="fw-bold mb-3 text-main">أحدث أجهزة الأشعة</h2>
+                <p class="lead text-muted">نستخدم أحدث التقنيات في مجال الأشعة التشخيصية والتحاليل الطبية</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 border-0 shadow text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-brain text-main mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">جهاز الرنين المغناطيسي</h5>
+                        <p class="card-text text-muted">أحدث جهاز رنين مغناطيسي 1.5 تسلا للحصول على صور عالية الدقة</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 border-0 shadow text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-microscope text-main mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">جهاز الأشعة المقطعية</h5>
+                        <p class="card-text text-muted">جهاز CT Scan متطور للحصول على صور ثلاثية الأبعاد</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 border-0 shadow text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-tooth text-main mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">جهاز بانوراما الأسنان</h5>
+                        <p class="card-text text-muted">جهاز بانوراما UHD عالي الدقة لأشعة الأسنان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 border-0 shadow text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-heartbeat text-main mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">جهاز الإيكو</h5>
+                        <p class="card-text text-muted">جهاز إيكو متطور لفحص القلب والأوعية الدموية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+{% if services %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="fw-bold mb-3 text-main">خدماتنا المميزة</h2>
+                <p class="lead text-muted">نقدم مجموعة شاملة من خدمات الأشعة والتحاليل الطبية</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card service-card h-100">
+                    {% if service.image %}
+                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.name }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="fas fa-x-ray text-muted" style="font-size: 3rem;"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.name }}</h5>
+                        <p class="card-text">{{ service.description|truncatewords:20 }}</p>
+                        <a href="{% url 'main:service_detail' service.id %}" class="btn btn-outline-main">المزيد</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'main:services' %}" class="btn btn-main btn-lg">
+                <i class="fas fa-list ms-2"></i>
+                عرض جميع الخدمات
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Team Section -->
+{% if doctors %}
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="fw-bold mb-3 text-main">فريقنا الطبي</h2>
+                <p class="lead text-muted">تعرف على الكادر الطبي المتميز في مركزنا</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            {% for doctor in doctors %}
+            <div class="col-lg-3 col-md-6">
+                <div class="card doctor-card h-100 border-0 shadow">
+                    {% if doctor.image %}
+                    <img src="{{ doctor.image.url }}" class="card-img-top" alt="{{ doctor.name }}" style="height: 250px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
+                        <i class="fas fa-user-md text-muted" style="font-size: 4rem;"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ doctor.name }}</h5>
+                        <p class="text-main mb-2">{{ doctor.specialization }}</p>
+                        <a href="{% url 'main:doctor_detail' doctor.id %}" class="btn btn-outline-main btn-sm">المزيد</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Blog Section -->
+{% if latest_blogs %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-4">
+            <div class="col-12">
+                <h2 class="fw-bold">أحدث المقالات</h2>
+                <p class="lead text-muted">اطلع على أحدث المقالات الطبية والتوعوية</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            {% for blog in latest_blogs %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow">
+                    {% if blog.image %}
+                    <img src="{{ blog.image.url }}" class="card-img-top" alt="{{ blog.title }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="fas fa-newspaper text-muted" style="font-size: 3rem;"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ blog.title }}</h5>
+                        <p class="card-text text-muted">{{ blog.content|truncatewords:15 }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">{{ blog.created_at|date:"Y/m/d" }}</small>
+                            <a href="{% url 'main:blog_detail' blog.id %}" class="btn btn-outline-main btn-sm">اقرأ المزيد</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{% url 'main:blog' %}" class="btn btn-primary btn-lg">
+                <i class="fas fa-blog me-2"></i>
+                عرض جميع المقالات
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3">احجز موعدك الآن</h2>
+        <p class="lead mb-4">احصل على أفضل رعاية طبية في مركز بانوراما للأشعة</p>
+        <a href="{% url 'main:booking' %}" class="btn btn-light btn-lg">
+            <i class="fas fa-calendar-plus me-2"></i>
+            احجز موعد
+        </a>
+    </div>
+</section>
+{% endblock %} 

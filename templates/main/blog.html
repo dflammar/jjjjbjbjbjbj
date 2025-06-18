@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}المدونة - مركز بانوراما للأشعة{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-main text-white text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-3">المدونة الطبية</h1>
+        <p class="lead">مقالات طبية وتوعوية في مجال الأشعة والصحة العامة</p>
+    </div>
+</section>
+
+<!-- Search Section -->
+<section class="py-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <form method="get" class="d-flex">
+                    <input type="text" name="search" class="form-control ms-2" placeholder="ابحث في المقالات..." value="{{ search_query }}">
+                    <button type="submit" class="btn btn-main">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Posts Section -->
+<section class="py-5">
+    <div class="container">
+        {% if search_query %}
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <i class="fas fa-search ms-2"></i>
+                    نتائج البحث عن "{{ search_query }}"
+                    <a href="{% url 'main:blog' %}" class="float-end">عرض جميع المقالات</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if page_obj %}
+        <div class="row g-4">
+            {% for blog in page_obj %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow">
+                    {% if blog.image %}
+                    <img src="{{ blog.image.url }}" class="card-img-top" alt="{{ blog.title }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="fas fa-newspaper text-muted" style="font-size: 3rem;"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">{{ blog.title }}</h5>
+                        <p class="card-text text-muted">{{ blog.content|truncatewords:20 }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                <i class="fas fa-user ms-1"></i>
+                                {{ blog.author }}
+                            </small>
+                            <small class="text-muted">
+                                <i class="fas fa-calendar ms-1"></i>
+                                {{ blog.created_at|date:"Y/m/d" }}
+                            </small>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <a href="{% url 'main:blog_detail' blog.id %}" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-readme ms-2"></i>
+                            اقرأ المزيد
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if page_obj.has_other_pages %}
+        <nav aria-label="صفحات المقالات" class="mt-5">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}">{{ num }}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% else %}
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="py-5">
+                    <i class="fas fa-newspaper text-muted mb-3" style="font-size: 4rem;"></i>
+                    <h3 class="text-muted">لا توجد مقالات</h3>
+                    <p class="text-muted">
+                        {% if search_query %}
+                        جرب البحث بكلمات مختلفة
+                        {% else %}
+                        سيتم إضافة مقالات طبية قريباً
+                        {% endif %}
+                    </p>
+                    {% if search_query %}
+                    <a href="{% url 'main:blog' %}" class="btn btn-main">
+                        <i class="fas fa-undo ms-2"></i>
+                        عرض جميع المقالات
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-4">
+            <div class="col-12">
+                <h2 class="fw-bold text-main">أقسام المدونة</h2>
+                <p class="lead text-muted">مقالات في مختلف المجالات الطبية</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-heart text-main mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">صحة القلب</h5>
+                        <p class="card-text text-muted">مقالات عن صحة القلب والأوعية الدموية</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-brain text-main mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">صحة المخ</h5>
+                        <p class="card-text text-muted">مقالات عن صحة المخ والجهاز العصبي</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-bone text-main mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">صحة العظام</h5>
+                        <p class="card-text text-muted">مقالات عن صحة العظام والمفاصل</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-baby text-main mb-3" style="font-size: 3rem;"></i>
+                        <h5 class="card-title">صحة المرأة</h5>
+                        <p class="card-text text-muted">مقالات عن صحة المرأة والحمل</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3">هل تريد معرفة المزيد؟</h2>
+        <p class="lead mb-4">تواصل معنا للحصول على استشارة طبية مجانية</p>
+        <div class="d-flex gap-3 justify-content-center">
+            <a href="{% url 'main:contact' %}" class="btn btn-light btn-lg">
+                <i class="fas fa-phone me-2"></i>
+                تواصل معنا
+            </a>
+            <a href="{% url 'main:booking' %}" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-calendar-plus me-2"></i>
+                احجز موعد
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %} 
